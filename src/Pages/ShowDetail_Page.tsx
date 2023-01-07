@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
+import { IoArrowBack } from "react-icons/io5";
 
 type ShowDetail_PageProps = WithRouterProps;
 
@@ -9,6 +11,12 @@ const ShowDetail_Page: FC<ShowDetail_PageProps> = ({ params }) => {
   console.log(params);
   return (
     <div className="mt-2">
+      <Link
+        className="flex items-center text-red-400 font-extrabold text-xl hover:text-red-500 duration-500"
+        to="/"
+      >
+        <IoArrowBack></IoArrowBack>Back{" "}
+      </Link>
       <h2 className="text-4xl font-semibold tracking-wide">The Witcher</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">
         <GenrePill name="Action" />
