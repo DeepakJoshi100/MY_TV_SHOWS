@@ -1,18 +1,18 @@
 import { FC, memo } from "react";
 import { Link } from "react-router-dom";
-import { Show } from "./Models/Show";
-import BrokenImage from "./Models/BrokenImage.jpg";
+import { Show } from "../Models/Show";
+import BrokenImage from "../Models/BrokenImage.jpg";
 
 type ShowCardsProps = { show: Show };
 
 const ShowCards: FC<ShowCardsProps> = ({ show }) => {
   return (
     <>
-      <div className="max-w-xs rounded-md shadow-md p-2 m-1">
+      <div className="max-w-xs rounded-md shadow-md p-2 m-1 ">
         <img
           src={show.image?.medium || show.image?.original || BrokenImage}
           alt=""
-          className="object-cover object-center w-full rounded-t-md h-72"
+          className="object-cover object-center w-full rounded-t-md h-72 "
         />
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
