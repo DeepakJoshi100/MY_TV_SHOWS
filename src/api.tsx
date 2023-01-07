@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Show } from "./Components/Models/Show";
+import { Show } from "./Models/Show";
 
 export const searchShows = (keyword: string) => {
   return axios
