@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { ShowsLoadedAction, ShowsQueryChangeAction } from "../Actions/Shows";
-import { searchShows } from "../api";
+import { ShowsQueryChangeAction } from "../Actions/Shows";
 import { Show } from "../Models/Show";
 import SearchBar from "../Components/SearchBar";
 import ShowCards from "../Components/ShowCards";
@@ -11,27 +10,21 @@ import { State } from "../store";
 type ShowsList_PageProps = {
   shows: Show[];
   query: string;
-  showsLoaded: (shows: Show[]) => void;
-  showsQueryChange: (query: string) => void;
+  queryChange: (query: string) => void;
 };
 
 const ShowsList_Page: FC<ShowsList_PageProps> = ({
-  showsLoaded,
   query,
   shows,
-  showsQueryChange,
+  queryChange,
 }) => {
-  useEffect(() => {
-    searchShows(query).then((shows) => showsLoaded(shows));
-  }, [query]);
-
   return (
     <>
       <div className="mt-2">
         <SearchBar
           value={query}
           onChange={(e) => {
-            showsQueryChange(e.target.value);
+            queryChange(e.target.value);
           }}
         />
         <div className="flex flex-wrap justify-center">
@@ -49,8 +42,7 @@ const mapStateToProps = (state: State) => {
 };
 
 const mapDispatchToProps = {
-  showsLoaded: ShowsLoadedAction,
-  showsQueryChange: ShowsQueryChangeAction,
+  queryChange: ShowsQueryChangeAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowsList_Page);
