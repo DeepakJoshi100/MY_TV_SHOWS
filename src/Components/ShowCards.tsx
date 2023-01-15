@@ -19,7 +19,6 @@ const ShowCards: FC<ShowCardsProps> = ({ show }) => {
             <h2 className="text-3xl font-semibold tracking-wide">
               {show.name}
             </h2>
-            <p>{show.summery}</p>
           </div>
           <Link
             to={"/show/" + show.id}
