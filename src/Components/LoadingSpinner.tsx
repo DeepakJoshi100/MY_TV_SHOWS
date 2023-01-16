@@ -6,7 +6,7 @@ type LoadingSpinnerProps = {};
 const LoadingSpinner: FC<LoadingSpinnerProps> = (props) => {
   return (
     <>
-      <ImSpinner className="animate-spin" />
+      <ImSpinner className="animate-spin text-center w-full" />
     </>
   );
 };
