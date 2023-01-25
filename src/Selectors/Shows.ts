@@ -15,6 +15,11 @@ export const showsMapSelector = createSelector(
   (showState) => showState.shows
 );
 
+export const castMapSelectors = createSelector(
+  showsStateSelector,
+  (showState) => showState.cast
+);
+
 export const queryShowsMapSelector = createSelector(
   showsStateSelector,
   (showsState) => showsState.query_shows

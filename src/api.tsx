@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CAST } from "./Models/Cast";
 import { Show } from "./Models/Show";
 
 const BASE_URL = "https://api.tvmaze.com/";
@@ -17,4 +18,8 @@ export const loadShowDetail = (showId: number) => {
     .then((response) => response.data);
 };
 
-
+export const castLoad = (showId: number) => {
+  return axios
+    .get<{ person: CAST }[]>(BASE_URL + "shows/" + showId + "/cast")
+    .then((r) => r.data.map((item) => item.person));
+};

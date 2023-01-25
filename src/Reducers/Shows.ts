@@ -1,4 +1,5 @@
-import { SHOW_DETAIL_LOADED } from "./../Actions/Shows";
+import { CAST } from "./../Models/Cast";
+import { CAST_LOADED, SHOW_DETAIL_LOADED } from "./../Actions/Shows";
 import { SHOWS_LOADED, SHOWS_QUERY_CHANGE } from "../Actions/Shows";
 import { Show } from "../Models/Show";
 import produce from "immer";
@@ -7,6 +8,7 @@ import { normalize, schema } from "normalizr";
 
 export type State = {
   shows: { [showId: number]: Show };
+  cast: CAST[];
   query_shows: { [query: string]: number[] };
   query: string;
   showLoading: { [showId: number]: boolean };
@@ -15,6 +17,7 @@ export type State = {
 
 export const initialState: State = {
   shows: {},
+  cast: [],
   query_shows: {},
   query: "",
   showLoading: {},
@@ -29,7 +32,6 @@ const ShowReducer = (state = initialState, action: AnyAction): State => {
         if (!shows || shows.length === 0) {
           return;
         }
-
         const showSchema = new schema.Entity("shows");
 
         const normalizedata = normalize(shows, [showSchema]);
@@ -53,6 +55,12 @@ const ShowReducer = (state = initialState, action: AnyAction): State => {
       return produce(state, (draft) => {
         const show = action.payload as Show;
         draft.shows[show.id] = show;
+      });
+
+    case CAST_LOADED:
+      return produce(state, (draft) => {
+        const cast = action.payload as CAST[];
+        draft.cast = cast;
       });
     default:
       return state;

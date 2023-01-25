@@ -19,6 +19,7 @@ const ShowsList_Page: FC<ShowsList_PageProps> = ({
   queryChange,
   loading,
 }) => {
+  console.log("shows", shows);
   return (
     <>
       <div className="mt-2">

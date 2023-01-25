@@ -1,3 +1,4 @@
+import { CAST } from "./../Models/Cast";
 import { ActionCreater } from ".";
 import { Show } from "../Models/Show";
 
@@ -28,5 +29,19 @@ export const LOAD_SHOW_ACTION = "LOAD_SHOW_ACTION";
 
 export const LoadShowAction: ActionCreater<number> = (showId: number) => ({
   type: LOAD_SHOW_ACTION,
+  payload: showId,
+});
+
+export const CAST_LOADED = "CAST_LOADED";
+
+export const CastLoaderAction: ActionCreater<CAST> = (person: CAST) => ({
+  type: CAST_LOADED,
+  payload: person,
+});
+
+export const LOAD_CAST = "LOAD_CAST";
+
+export const LoadCastAction: ActionCreater<number> = (showId: number) => ({
+  type: LOAD_CAST,
   payload: showId,
 });

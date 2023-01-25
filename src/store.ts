@@ -1,9 +1,14 @@
-import { LOAD_SHOW_ACTION, SHOWS_QUERY_CHANGE } from "./Actions/Shows";
+import {
+  CAST_LOADED,
+  LOAD_CAST,
+  LOAD_SHOW_ACTION,
+  SHOWS_QUERY_CHANGE,
+} from "./Actions/Shows";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import createSagaMiddleware from "@redux-saga/core";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import ShowReducer from "./Reducers/Shows";
-import { fetchShowDetail, fetchShows } from "./Sagas/Shows";
+import { fetchCastDetail, fetchShowDetail, fetchShows } from "./Sagas/Shows";
 import { debounce, takeEvery } from "redux-saga/effects";
 
 const reducer = combineReducers({
@@ -12,7 +17,9 @@ const reducer = combineReducers({
 
 function* rootSaga() {
   yield debounce(200, SHOWS_QUERY_CHANGE, fetchShows);
+  yield debounce(200, SHOWS_QUERY_CHANGE, fetchShows);
   yield takeEvery(LOAD_SHOW_ACTION, fetchShowDetail);
+  yield takeEvery(LOAD_CAST, fetchCastDetail);
 }
 
 const sagaMiddleware = createSagaMiddleware();
